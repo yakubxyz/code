@@ -71,7 +71,22 @@ namespace Maturita
          * if()
          * else if()
          *      else if() ...
-        */
+         * 
+         * Tohle je jen kdyby se náhodou zepta jestli není nějaký jiný způsob větvení.
+         * Taky existuje switch:
+         *      switch(podmínka)//může být víc než 2, samozřejmě.
+         *      {
+         *          case Hodnota1:
+         *              //co má provést v případě 1
+         *              break;
+         *          case Hodnota2:
+         *              //co má provést v případě 2
+         *              break;
+         *          default:
+         *              //co má provést pokud žádná neplatí
+         *              break;
+         *      }
+         */
         #endregion
         #region 3 - Příkazy opakování /t
         /*
@@ -593,7 +608,7 @@ namespace Maturita
             }
             return vysledek;
         }
-        public static double funkce(double x) => x;
+        public static double funkce(double x) => x;//Sem napiš funkci jejíž f(x) == 0 hledáš.
         #endregion
         #endregion
         #region 19 - Zpracování úloh lineární algebry
@@ -667,7 +682,7 @@ namespace Maturita
         }
         #endregion
         #endregion
-        #region 20 - Tabulky a taabulkové procesory, algoritmy statistiky
+        #region 20 - Tabulky a tabulkové procesory, algoritmy statistiky
         /*
          * Tabulky - způsob ukládání dat.
          * Tabulkové procesory - zpracování dat v tabulkách, Excel.
@@ -883,7 +898,7 @@ namespace Maturita
             int Y = Pole.GetLength(1), pomocnáProměnná = 0;
             for (int j = 0; j < Y; j++)
             {
-                pomocnáProměnná = Pole[Sloupec1, j];
+                 if (ČísloČlenu == 0) return 0;
                 Pole[Sloupec1, j] = Pole[Sloupec2, j];
                 Pole[Sloupec2, j] = pomocnáProměnná;
             }
@@ -901,10 +916,11 @@ namespace Maturita
             if (k == 0 || k == n) return 1;
             return KombinacniCisla(n - 1, k - 1) + KombinacniCisla(n - 1, k);
         }
-        public static int FibonaccihoPosloupnost(int ČisloČlenu)
+        public static int FibonaccihoPosloupnost(int ČísloČlenu)
         {
-            if (ČisloČlenu < 3) return 1;
-            return FibonaccihoPosloupnost(ČisloČlenu - 1) + FibonaccihoPosloupnost(ČisloČlenu - 2);
+            if (ČísloČlenu == 0) return 0;
+            if (ČísloČlenu < 3) return 1;
+            return FibonaccihoPosloupnost(ČísloČlenu - 1) + FibonaccihoPosloupnost(ČísloČlenu - 2);
         }
         #endregion
         #region Řadící algoritmy
@@ -956,7 +972,7 @@ namespace Maturita
                 swapped = true;
                 for (int j = 0; j < Pole.Length - i - 1; j++)
                 {
-                    if (Pole[j + 1] > Pole[j])
+                    if (Pole[j + 1] < Pole[j])
                     {
                         Prehod(Pole, j, j + 1);
                         swapped = false;
@@ -1038,7 +1054,7 @@ namespace Maturita
             {
                 zasobnik.Push(Číslo % Dawyt);
                 Číslo /= Dawyt;
-            } while (Číslo > Dawyt);
+            } while (Číslo > 0);
             while (zasobnik.Count != 0) vysledek += String.Format("{0}", zasobnik.Pop());
             return vysledek;
         }
@@ -1062,7 +1078,7 @@ namespace Maturita
             {
                 zasobnik.Push(symboly[Číslo % Dawyt]);
                 Číslo /= Dawyt;
-            } while (Číslo > Dawyt);
+            } while (Číslo > 0);
             while (zasobnik.Count != 0) vysledek += String.Format("{0}", zasobnik.Pop());
             return vysledek;
         }
@@ -1091,6 +1107,8 @@ namespace Maturita
 
         static void Main(string[] args)
         {
+            Console.WriteLine(KombinacniCisla(3, 2));
+            Console.ReadKey();
         }
     }
 }
